@@ -88,7 +88,7 @@ export default function Home() {
               <span className="text-xl font-bold">Syntegra</span>
             </div>
             <Button variant="outline" asChild>
-              <a href="/login">Login Admin</a>
+              <Link href="/login">Login Admin</Link>
             </Button>
           </div>
         </div>
