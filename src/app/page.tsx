@@ -19,6 +19,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -82,10 +83,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <GalleryVerticalEnd className="size-5" />
+              <div className="flex items-center justify-center">
+                <Image
+                  src={"/images/syntegra-logo.jpg"}
+                  width={30}
+                  height={30}
+                  alt="Logo"
+                  className="size-5 md:size-7"
+                />
               </div>
-              <span className="text-xl font-bold">Syntegra</span>
+              <span className="text-lg md:text-2xl font-black text-gray-800">
+                Syntegra
+              </span>
             </div>
             <Button variant="outline" asChild>
               <Link href="/login">Login Admin</Link>
@@ -217,10 +226,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <GalleryVerticalEnd className="size-5" />
+              <div className="flex items-center justify-center text-primary-foreground">
+                <Image
+                  src={"/images/syntegra-logo.jpg"}
+                  width={30}
+                  height={30}
+                  alt="Logo"
+                  className="size-5 md:size-7"
+                />
               </div>
-              <span className="text-xl font-bold">Syntegra Services</span>
+              <span className="text-xl md:text-2xl font-black text-gray-800">
+                Syntegra Services
+              </span>
             </div>
             <p className="text-sm text-muted-foreground">
               © 2025 Syntegra Services. Dikembangkan oleh{" "}
