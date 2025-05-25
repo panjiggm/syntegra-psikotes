@@ -236,14 +236,14 @@ export default function ReportsPage() {
 
   return (
     <LayoutDashboard>
-      <div className="flex flex-1 flex-col gap-6 p-4 pt-0">
+      <div className="flex flex-1 flex-col gap-4 p-4">
         {/* Header Section */}
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-foreground">
               Laporan & Analisis
             </h1>
-            <p className="text-muted-foreground max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl text-sm">
               Analisis komprehensif hasil psikotes dengan visualisasi data yang
               mendalam untuk pengambilan keputusan strategis dalam proses
               rekrutmen.

@@ -34,13 +34,13 @@ const dashboardStats = {
 export default function DashboardPage() {
   return (
     <LayoutDashboard>
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+      <div className="flex flex-1 flex-col gap-4 p-4">
         {/* Header Section */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-foreground mb-2">
             Dashboard Admin
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             Selamat datang di sistem manajemen psikotes Syntegra Services
           </p>
         </div>

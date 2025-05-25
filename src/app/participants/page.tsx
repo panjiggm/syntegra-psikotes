@@ -393,14 +393,14 @@ export default function ParticipantsPage() {
 
   return (
     <LayoutDashboard>
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+      <div className="flex flex-1 flex-col gap-4 p-4">
         {/* Header Section */}
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-foreground">
               Manajemen Peserta
             </h1>
-            <p className="text-muted-foreground max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl text-sm">
               Kelola data peserta psikotes, pantau status tes, dan atur jadwal
               evaluasi dengan sistem yang terintegrasi dan efisien.
             </p>
@@ -663,7 +663,7 @@ export default function ParticipantsPage() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between px-2 py-4">
+              <div className="flex items-center justify-between py-4">
                 <div className="text-sm text-muted-foreground">
                   Menampilkan {startIndex + 1} hingga{" "}
                   {Math.min(endIndex, filteredParticipants.length)} dari{" "}

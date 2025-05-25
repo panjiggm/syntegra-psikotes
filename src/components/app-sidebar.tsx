@@ -60,12 +60,8 @@ const data = {
           url: "/modules",
         },
         {
-          title: "Bank Soal",
-          url: "/modules/questions",
-        },
-        {
           title: "Template Modul",
-          url: "/modules/templates",
+          url: "/templates",
         },
       ],
     },
