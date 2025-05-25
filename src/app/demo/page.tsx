@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import MobileDemoBox from "@/components/MobileDemoBox";
+import MobileDemo from "@/components/mobile";
 
 const DemoPage = () => {
   return (
@@ -18,18 +18,18 @@ const DemoPage = () => {
       </div>
 
       {/* Title Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-black text-gray-800 mb-4">
+      <div className="text-center mb-4">
+        <h1 className="text-xl md:text-3xl font-black text-gray-800">
           DEMO MOBILE APPLICATION
         </h1>
-        <p className="text-lg md:text-xl text-gray-600 font-medium">
+        <p className="text-sm md:text-lg text-gray-600 font-medium">
           Syntegra Psikotes - Platform Digital untuk Peserta
         </p>
       </div>
 
       {/* Mobile Demo Box - Larger */}
       <div className="flex-1 flex items-center justify-center">
-        <MobileDemoBox />
+        <MobileDemo />
       </div>
 
       {/* Footer */}
