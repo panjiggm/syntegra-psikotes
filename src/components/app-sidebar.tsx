@@ -60,10 +60,6 @@ const data = {
           url: "/modules",
         },
         {
-          title: "Buat Modul Baru",
-          url: "/modules/create",
-        },
-        {
           title: "Bank Soal",
           url: "/modules/questions",
         },
