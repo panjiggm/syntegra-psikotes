@@ -57,6 +57,7 @@ import {
   Settings,
   BarChart3,
 } from "lucide-react";
+import Link from "next/link";
 
 // Tipe data modul
 interface PsychologicalModule {
@@ -691,10 +692,12 @@ export default function ModulesPage() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Aksi Modul</DropdownMenuLabel>
-                              <DropdownMenuItem>
-                                <Eye className="mr-2 h-4 w-4" />
-                                Lihat Detail
-                              </DropdownMenuItem>
+                              <Link href={`/modules/${module.id}`}>
+                                <DropdownMenuItem>
+                                  <Eye className="mr-2 h-4 w-4" />
+                                  Lihat Detail
+                                </DropdownMenuItem>
+                              </Link>
                               <DropdownMenuItem>
                                 <Edit className="mr-2 h-4 w-4" />
                                 Edit Modul
