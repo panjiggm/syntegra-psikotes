@@ -14,9 +14,39 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
 import React, { ReactNode } from "react";
 
+// Mapping untuk breadcrumb
+const breadcrumbMap: Record<string, { title: string; href?: string }> = {
+  "/dashboard": { title: "Dashboard" },
+  "/participants": { title: "Manajemen Peserta" },
+  "/reports": { title: "Laporan & Hasil" },
+  "/modules": { title: "Modul Psikotes" },
+  "/sessions": { title: "Sesi & Waktu" },
+  "/settings": { title: "Pengaturan Sistem" },
+};
+
 const LayoutDashboard = ({ children }: { children: ReactNode }) => {
+  const pathname = usePathname();
+
+  // Handle dynamic routes
+  const getBreadcrumb = () => {
+    if (pathname.startsWith("/participants/") && pathname !== "/participants") {
+      // This is a participant detail page
+      return {
+        parent: { title: "Manajemen Peserta", href: "/participants" },
+        current: { title: "Detail Peserta" },
+      };
+    }
+
+    return {
+      current: breadcrumbMap[pathname],
+    };
+  };
+
+  const breadcrumb = getBreadcrumb();
+
   return (
     <ProtectedRoute>
       <SidebarProvider>
@@ -33,10 +63,26 @@ const LayoutDashboard = ({ children }: { children: ReactNode }) => {
                       Sistem Psikotes
                     </BreadcrumbLink>
                   </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>Dashboard</BreadcrumbPage>
-                  </BreadcrumbItem>
+                  {breadcrumb.parent && (
+                    <>
+                      <BreadcrumbSeparator className="hidden md:block" />
+                      <BreadcrumbItem className="hidden md:block">
+                        <BreadcrumbLink href={breadcrumb.parent.href}>
+                          {breadcrumb.parent.title}
+                        </BreadcrumbLink>
+                      </BreadcrumbItem>
+                    </>
+                  )}
+                  {breadcrumb.current && (
+                    <>
+                      <BreadcrumbSeparator className="hidden md:block" />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage>
+                          {breadcrumb.current.title}
+                        </BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </>
+                  )}
                 </BreadcrumbList>
               </Breadcrumb>
             </div>
