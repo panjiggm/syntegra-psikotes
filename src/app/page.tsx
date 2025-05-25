@@ -131,19 +131,21 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href={"/login"}>
+              <Link href={"/demo"}>
                 <Button className="group supabase-gradient hover:scale-105 transition-all duration-200">
                   Mulai Demo Sekarang
                   <ArrowRight className="ml-2 size-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
 
-              <Button
-                variant="outline"
-                className="hover:bg-primary/5 transition-all duration-200"
-              >
-                Pelajari Lebih Lanjut
-              </Button>
+              <Link href={"/login"}>
+                <Button
+                  variant="outline"
+                  className="hover:bg-primary/5 transition-all duration-200"
+                >
+                  Lanjut Sebagai Admin
+                </Button>
+              </Link>
             </div>
           </div>
 
