@@ -1,29 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   User,
   Brain,
-  Clock,
   Shield,
   CheckCircle,
   ArrowRight,
-  Download,
-  Smartphone,
-  Star,
   Users,
-  Award,
   Play,
   Home,
   Bell,
-  Settings,
-  LogIn,
   MoreHorizontal,
   Target,
   FileText,
-  Zap,
   TrendingUp,
-  Eye,
   Heart,
 } from "lucide-react";
 
