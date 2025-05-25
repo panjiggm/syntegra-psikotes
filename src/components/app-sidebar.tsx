@@ -66,27 +66,9 @@ const data = {
       ],
     },
     {
-      title: "Sesi & Waktu",
-      url: "/sessions",
+      title: "Jadwal & Sesi",
+      url: "/schedule",
       icon: Clock,
-      items: [
-        {
-          title: "Pengaturan Durasi",
-          url: "/sessions/duration",
-        },
-        {
-          title: "Jadwal Tes",
-          url: "/sessions/schedule",
-        },
-        {
-          title: "Sesi Aktif",
-          url: "/sessions/active",
-        },
-        {
-          title: "Riwayat Sesi",
-          url: "/sessions/history",
-        },
-      ],
     },
 
     {
