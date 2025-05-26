@@ -12,16 +12,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth-context";
 
-export function LoginForm({
+export function LoginFormAdmin({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [email, setEmail] = useState("test@user.com");
-  const [password, setPassword] = useState("user123");
+  const [email, setEmail] = useState("test@admin.com");
+  const [password, setPassword] = useState("admin123");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { login } = useAuth();
+  const { loginAdmin } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,12 +30,14 @@ export function LoginForm({
     setIsLoading(true);
 
     try {
-      const success = await login(email, password);
+      const success = await loginAdmin(email, password);
 
       if (success) {
-        router.push("/candidate/dashboard");
+        router.push("/dashboard");
       } else {
-        setError("Email atau password salah. Gunakan: test@user.com / user123");
+        setError(
+          "Email atau password salah. Gunakan: test@admin.com / admin123"
+        );
       }
     } catch (err) {
       setError("Terjadi kesalahan saat login. Silakan coba lagi.");
@@ -51,9 +53,9 @@ export function LoginForm({
           <form onSubmit={handleSubmit} className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Selamat datang Kandidat!</h1>
+                <h1 className="text-2xl font-bold">Selamat datang Admin!</h1>
                 <p className="text-balance text-muted-foreground">
-                  Masuk ke akun Anda
+                  Masuk ke akun Admin Anda
                 </p>
               </div>
 
@@ -62,9 +64,9 @@ export function LoginForm({
                 <div className="text-xs text-blue-800">
                   <strong>Demo Credentials:</strong>
                   <br />
-                  Email: test@user.com
+                  Email: test@admin.com
                   <br />
-                  Password: user123
+                  Password: admin123
                 </div>
               </div>
 
@@ -80,7 +82,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="test@user.com"
+                  placeholder="test@admin.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -102,7 +104,7 @@ export function LoginForm({
                 <Input
                   id="password"
                   type="password"
-                  placeholder="user123"
+                  placeholder="admin123"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required

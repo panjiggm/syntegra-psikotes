@@ -1,5 +1,5 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { ProtectedRoute } from "@/components/protected-route";
+import { AppSidebarAdmin } from "@/components/app-sidebar-admin";
+import { ProtectedAdminRoute } from "@/components/protected-admin-route";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -48,9 +48,9 @@ const LayoutDashboard = ({ children }: { children: ReactNode }) => {
   const breadcrumb = getBreadcrumb();
 
   return (
-    <ProtectedRoute>
+    <ProtectedAdminRoute>
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebarAdmin />
         <SidebarInset>
           <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
             <div className="flex items-center gap-2 px-4">
@@ -92,7 +92,7 @@ const LayoutDashboard = ({ children }: { children: ReactNode }) => {
           </div>
         </SidebarInset>
       </SidebarProvider>
-    </ProtectedRoute>
+    </ProtectedAdminRoute>
   );
 };
 
