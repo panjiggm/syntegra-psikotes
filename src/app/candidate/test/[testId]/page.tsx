@@ -9,6 +9,8 @@ import {
   AlertCircle,
   Play,
   Pause,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -158,19 +160,24 @@ const TestExecutionPage = () => {
 
   if (!test) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Test Tidak Ditemukan
-          </h2>
-          <p className="text-gray-600 mb-4">
-            Test dengan ID "{testId}" tidak tersedia
-          </p>
-          <Button onClick={() => router.push("/candidate/test")}>
-            Kembali ke Daftar Test
-          </Button>
-        </div>
+      <div className="flex items-center justify-center">
+        <Card className="max-w-md mx-4">
+          <CardContent className="text-center py-8">
+            <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              Test Tidak Ditemukan
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Test dengan ID "{testId}" tidak tersedia
+            </p>
+            <Button
+              onClick={() => router.push("/candidate/test")}
+              className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600"
+            >
+              Kembali ke Daftar Test
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -212,72 +219,90 @@ const TestExecutionPage = () => {
   if (!isStarted) {
     return (
       <LayoutCandidate>
-        <div className="min-h-screen">
-          <div className="bg-white p-4 flex items-center justify-between shadow-sm sticky top-0 z-10">
-            <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.push("/candidate/test")}
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <div>
-                <h1 className="text-xl font-bold text-gray-800">{test.name}</h1>
+        <div className="">
+          {/* Header */}
+          <div className="">
+            <div className="max-w-4xl mx-auto px-6 py-4">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => router.push("/candidate/test")}
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <div>
+                  <h1 className="text-lg font-semibold text-gray-800">
+                    {test.name}
+                  </h1>
+                  <p className="text-sm text-gray-600">
+                    Persiapan untuk mengikuti test
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="p-6 max-w-2xl mx-auto">
+          {/* Content */}
+          <div className="max-w-2xl mx-auto px-6 py-8">
             <Card>
-              <CardHeader>
-                <CardTitle className="text-center">Persiapan Test</CardTitle>
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-xl font-bold text-gray-800">
+                  {test.name}
+                </CardTitle>
+                <p className="text-gray-600 mt-2">{test.description}</p>
               </CardHeader>
+
               <CardContent className="space-y-6">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="h-10 w-10 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                    {test.name}
-                  </h2>
-                  <p className="text-gray-600">{test.description}</p>
-                </div>
-
+                {/* Test Stats */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-50 p-4 rounded-lg text-center">
-                    <div className="text-2xl font-bold text-gray-800">
-                      {test.duration}
-                    </div>
-                    <div className="text-sm text-gray-600">Menit</div>
-                  </div>
-                  <div className="bg-gray-50 p-4 rounded-lg text-center">
-                    <div className="text-2xl font-bold text-gray-800">
-                      {test.totalQuestions}
-                    </div>
-                    <div className="text-sm text-gray-600">Pertanyaan</div>
-                  </div>
+                  <Card>
+                    <CardContent className="p-4 text-center">
+                      <div className="text-2xl font-bold text-gray-800">
+                        {test.duration}
+                      </div>
+                      <div className="text-sm text-gray-600">Menit</div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent className="p-4 text-center">
+                      <div className="text-2xl font-bold text-gray-800">
+                        {test.totalQuestions}
+                      </div>
+                      <div className="text-sm text-gray-600">Pertanyaan</div>
+                    </CardContent>
+                  </Card>
                 </div>
 
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-blue-800 mb-2">
-                    Petunjuk:
-                  </h3>
-                  <ul className="text-sm text-blue-700 space-y-1">
-                    <li>• Baca setiap pertanyaan dengan teliti</li>
-                    <li>• Pilih jawaban yang paling menggambarkan diri Anda</li>
-                    <li>• Tidak ada jawaban benar atau salah</li>
-                    <li>• Jawab dengan jujur dan spontan</li>
-                    <li>• Test akan otomatis berakhir setelah waktu habis</li>
-                  </ul>
-                </div>
+                {/* Instructions */}
+                <Card className="bg-blue-50">
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                      <AlertCircle className="h-4 w-4" />
+                      Petunjuk
+                    </h3>
+                    <ul className="text-sm text-blue-700 space-y-2">
+                      <li>• Baca setiap pertanyaan dengan teliti</li>
+                      <li>
+                        • Pilih jawaban yang paling menggambarkan diri Anda
+                      </li>
+                      <li>• Tidak ada jawaban benar atau salah</li>
+                      <li>• Jawab dengan jujur dan spontan</li>
+                      <li>• Test akan otomatis berakhir setelah waktu habis</li>
+                    </ul>
+                  </CardContent>
+                </Card>
 
+                {/* Start Button */}
                 <Button
                   onClick={() => setIsStarted(true)}
-                  className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white hover:from-yellow-500 hover:to-amber-600"
+                  className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600"
                   size="lg"
                 >
-                  <Play className="h-5 w-5 mr-2" />
+                  <Play className="h-4 w-4 mr-2" />
                   Mulai Test
                 </Button>
               </CardContent>
@@ -293,51 +318,53 @@ const TestExecutionPage = () => {
     return (
       <LayoutCandidate>
         <div className="min-h-screen flex items-center justify-center">
-          <div className="max-w-md mx-auto p-6">
-            <Card>
-              <CardContent className="text-center py-8">
-                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                  Test Selesai!
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  Terima kasih telah menyelesaikan {test.name}. Hasil akan
-                  diproses dan dapat dilihat di dashboard.
-                </p>
+          <Card className="max-w-lg mx-4">
+            <CardContent className="text-center py-8">
+              <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Test Selesai!
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Terima kasih telah menyelesaikan {test.name}. Hasil akan
+                diproses dan dapat dilihat di dashboard.
+              </p>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-50 p-3 rounded-lg">
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <Card>
+                  <CardContent className="p-3 text-center">
                     <div className="text-lg font-bold text-gray-800">
                       {answeredQuestions}
                     </div>
                     <div className="text-xs text-gray-600">Terjawab</div>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="p-3 text-center">
                     <div className="text-lg font-bold text-gray-800">
                       {formatTime(timeRemaining)}
                     </div>
                     <div className="text-xs text-gray-600">Sisa Waktu</div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
+              </div>
 
-                <div className="space-y-3">
-                  <Button
-                    onClick={() => router.push("/candidate/test")}
-                    className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white hover:from-yellow-500 hover:to-amber-600"
-                  >
-                    Kembali ke Daftar Test
-                  </Button>
-                  <Button
-                    onClick={() => router.push("/candidate/dashboard")}
-                    variant="outline"
-                    className="w-full"
-                  >
-                    Kembali ke Dashboard
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              <div className="space-y-3">
+                <Button
+                  onClick={() => router.push("/candidate/test")}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600"
+                >
+                  Kembali ke Daftar Test
+                </Button>
+                <Button
+                  onClick={() => router.push("/candidate/dashboard")}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Kembali ke Dashboard
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </LayoutCandidate>
     );
@@ -347,130 +374,205 @@ const TestExecutionPage = () => {
 
   return (
     <LayoutCandidate>
-      <div className="min-h-screen">
+      <div className="">
         {/* Header */}
-        <div className="bg-white p-4 shadow-sm sticky top-0 z-10">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsPaused(!isPaused)}
-              >
-                {isPaused ? (
-                  <Play className="h-4 w-4" />
-                ) : (
-                  <Pause className="h-4 w-4" />
-                )}
-              </Button>
-              <div>
-                <h1 className="text-lg font-bold text-gray-800">{test.name}</h1>
-                <p className="text-sm text-gray-600">
-                  Soal {currentQuestion + 1} dari {test.questions.length}
-                </p>
-              </div>
-            </div>
-
-            <div className="text-right">
-              <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
-                <Clock className="h-4 w-4" />
-                <span
-                  className={
-                    timeRemaining < 300 ? "text-red-500 font-bold" : ""
-                  }
+        <div className="border-b border-slate-200 sticky top-0 z-10 shadow-sm bg-white">
+          <div className="max-w-5xl mx-auto px-6 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsPaused(!isPaused)}
                 >
-                  {formatTime(timeRemaining)}
-                </span>
+                  {isPaused ? (
+                    <Play className="h-4 w-4" />
+                  ) : (
+                    <Pause className="h-4 w-4" />
+                  )}
+                </Button>
+                <div>
+                  <h1 className="text-lg font-semibold text-gray-800">
+                    {test.name}
+                  </h1>
+                  <p className="text-sm text-gray-600">
+                    Pertanyaan {currentQuestion + 1} dari{" "}
+                    {test.questions.length}
+                  </p>
+                </div>
               </div>
-              <div className="text-xs text-gray-500">
-                {answeredQuestions}/{test.questions.length} terjawab
+
+              <div className="flex items-center gap-6">
+                <div className="text-right">
+                  <div className="flex items-center gap-2 text-gray-600 mb-1">
+                    <Clock className="h-4 w-4" />
+                    <span
+                      className={`text-sm font-mono ${
+                        timeRemaining < 300
+                          ? "text-red-500 font-bold"
+                          : "text-gray-800"
+                      }`}
+                    >
+                      {formatTime(timeRemaining)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {answeredQuestions}/{test.questions.length} terjawab
+                  </div>
+                </div>
+
+                <div className="w-32">
+                  <div className="flex justify-between text-xs text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span>{Math.round(progress)}%</span>
+                  </div>
+                  <Progress value={progress} className="h-2" />
+                </div>
               </div>
             </div>
           </div>
-
-          <Progress value={progress} className="h-2" />
         </div>
 
-        {/* Question Content */}
-        <div className="p-4 max-w-2xl mx-auto">
-          <Card>
-            <CardHeader>
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="text-sm text-gray-500 mb-2">
-                    {currentQ.category}
-                  </div>
-                  <CardTitle className="text-lg leading-relaxed">
-                    {currentQ.question}
+        {/* Main Content */}
+        <div className="max-w-5xl mx-auto px-6 py-6">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Question Navigation Sidebar */}
+            <div className="col-span-3">
+              <Card className="sticky top-20">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-medium">
+                    Navigasi Soal
                   </CardTitle>
-                </div>
-              </div>
-            </CardHeader>
-
-            <CardContent>
-              <RadioGroup
-                value={answers[currentQ.id]?.toString() || ""}
-                onValueChange={(value: string) =>
-                  handleAnswerSelect(currentQ.id, parseInt(value))
-                }
-                className="space-y-3"
-              >
-                {currentQ.options.map((option, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 border border-transparent hover:border-gray-200 transition-colors"
-                  >
-                    <RadioGroupItem
-                      value={index.toString()}
-                      id={`option-${index}`}
-                      className="mt-1"
-                    />
-                    <Label
-                      htmlFor={`option-${index}`}
-                      className="flex-1 text-sm cursor-pointer leading-relaxed"
-                    >
-                      {option}
-                    </Label>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-5 gap-1">
+                    {test.questions.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentQuestion(index)}
+                        className={`w-8 h-8 rounded text-xs font-medium transition-colors ${
+                          index === currentQuestion
+                            ? "bg-yellow-400 text-white"
+                            : answers[test.questions[index].id] !== undefined
+                            ? "bg-green-100 text-green-700 hover:bg-green-200"
+                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
                   </div>
-                ))}
-              </RadioGroup>
-            </CardContent>
-          </Card>
 
-          {/* Navigation */}
-          <div className="flex justify-between items-center mt-6">
-            <Button
-              variant="outline"
-              onClick={handlePrevious}
-              disabled={currentQuestion === 0}
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Sebelumnya
-            </Button>
-
-            <div className="text-sm text-gray-500">
-              {currentQuestion + 1} / {test.questions.length}
+                  <div className="mt-4 space-y-2 text-xs">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-yellow-400 rounded"></div>
+                      <span className="text-gray-600">Aktif</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-green-100 border border-green-200 rounded"></div>
+                      <span className="text-gray-600">Selesai</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-gray-100 rounded"></div>
+                      <span className="text-gray-600">Belum</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
-            {currentQuestion === test.questions.length - 1 ? (
-              <Button
-                onClick={handleFinish}
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700"
-                disabled={!answers[currentQ.id] && answers[currentQ.id] !== 0}
-              >
-                <CheckCircle className="h-4 w-4 mr-2" />
-                Selesai
-              </Button>
-            ) : (
-              <Button
-                onClick={handleNext}
-                disabled={!answers[currentQ.id] && answers[currentQ.id] !== 0}
-                className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white hover:from-yellow-500 hover:to-amber-600"
-              >
-                Selanjutnya
-                <ArrowLeft className="h-4 w-4 ml-2 rotate-180" />
-              </Button>
-            )}
+            {/* Question Content */}
+            <div className="col-span-9">
+              <Card>
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-2 px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium mb-3">
+                        <span>{currentQ.category}</span>
+                      </div>
+                      <CardTitle className="text-lg leading-relaxed text-gray-800">
+                        {currentQ.question}
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
+
+                <CardContent>
+                  <RadioGroup
+                    value={answers[currentQ.id]?.toString() || ""}
+                    onValueChange={(value: string) =>
+                      handleAnswerSelect(currentQ.id, parseInt(value))
+                    }
+                    className="space-y-3"
+                  >
+                    {currentQ.options.map((option, index) => (
+                      <div
+                        key={index}
+                        className={`flex items-start space-x-3 p-4 rounded-lg border transition-colors cursor-pointer ${
+                          answers[currentQ.id] === index
+                            ? "border-yellow-400 bg-yellow-50"
+                            : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                        }`}
+                        onClick={() => handleAnswerSelect(currentQ.id, index)}
+                      >
+                        <RadioGroupItem
+                          value={index.toString()}
+                          id={`option-${index}`}
+                          className="mt-0.5"
+                        />
+                        <Label
+                          htmlFor={`option-${index}`}
+                          className="flex-1 text-sm cursor-pointer leading-relaxed text-gray-700"
+                        >
+                          {option}
+                        </Label>
+                      </div>
+                    ))}
+                  </RadioGroup>
+
+                  {/* Navigation Buttons */}
+                  <div className="flex justify-between items-center mt-6 pt-4 border-t">
+                    <Button
+                      variant="outline"
+                      onClick={handlePrevious}
+                      disabled={currentQuestion === 0}
+                      className="flex items-center gap-2"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      Sebelumnya
+                    </Button>
+
+                    <div className="text-sm text-gray-500">
+                      {currentQuestion + 1} dari {test.questions.length}
+                    </div>
+
+                    {currentQuestion === test.questions.length - 1 ? (
+                      <Button
+                        onClick={handleFinish}
+                        className="bg-green-600 hover:bg-green-700"
+                        disabled={
+                          !answers[currentQ.id] && answers[currentQ.id] !== 0
+                        }
+                      >
+                        <CheckCircle className="h-4 w-4 mr-2" />
+                        Selesai
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={handleNext}
+                        disabled={
+                          !answers[currentQ.id] && answers[currentQ.id] !== 0
+                        }
+                        className="bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600"
+                      >
+                        Selanjutnya
+                        <ChevronRight className="h-4 w-4 ml-2" />
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
 
@@ -489,7 +591,7 @@ const TestExecutionPage = () => {
                 <div className="space-y-3">
                   <Button
                     onClick={() => setIsPaused(false)}
-                    className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white hover:from-yellow-500 hover:to-amber-600"
+                    className="w-full bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600"
                   >
                     <Play className="h-4 w-4 mr-2" />
                     Lanjutkan Test
