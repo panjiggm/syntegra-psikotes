@@ -121,9 +121,9 @@ const TestResultsPage = () => {
 
   return (
     <LayoutCandidate>
-      <div className="">
-        {/* Header */}
-        <div className="border-b">
+      <div className="space-y-8">
+        {/* Section 1: Header */}
+        <div className="border-b pb-6">
           <div className="max-w-7xl container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ const TestResultsPage = () => {
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <div>
-                  <h1 className="text-lg font-semibold text-gray-800">
+                  <h1 className="text-2xl font-bold text-gray-800">
                     Hasil Test
                   </h1>
                   <p className="text-sm text-gray-600">
@@ -159,169 +159,12 @@ const TestResultsPage = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl container mx-auto px-6 py-6 space-y-6">
-          {/* Score Overview */}
-          <Card className={`border-2 ${getScoreBg(results.score)}`}>
-            <CardContent className="p-6">
-              <div className="text-center">
-                <div className="flex justify-center mb-4">
-                  <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-white border-4 border-current flex items-center justify-center">
-                      <span
-                        className={`text-2xl font-bold ${getScoreColor(
-                          results.score
-                        )}`}
-                      >
-                        {results.score}
-                      </span>
-                    </div>
-                    <Trophy className="absolute -top-1 -right-1 h-6 w-6 text-yellow-500" />
-                  </div>
-                </div>
-                <h2 className="text-xl font-bold text-gray-800 mb-2">
-                  Skor Anda: {results.score}/100
-                </h2>
-                <Badge variant="secondary" className="text-sm px-3 py-1 mb-3">
-                  Level: {results.level}
-                </Badge>
-                <p className="text-sm text-gray-600">
-                  Anda berada di persentil ke-{results.percentile}, artinya skor
-                  Anda lebih tinggi dari {results.percentile}% peserta lainnya
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Card>
-              <CardContent className="p-4 text-center">
-                <Clock className="h-6 w-6 text-blue-500 mx-auto mb-2" />
-                <p className="text-xs text-gray-600">Waktu</p>
-                <p className="text-sm font-semibold">{results.timeSpent}</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <CheckCircle className="h-6 w-6 text-green-500 mx-auto mb-2" />
-                <p className="text-xs text-gray-600">Benar</p>
-                <p className="text-sm font-semibold">
-                  {results.correctAnswers}/{results.totalQuestions}
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <BarChart3 className="h-6 w-6 text-purple-500 mx-auto mb-2" />
-                <p className="text-xs text-gray-600">Persentil</p>
-                <p className="text-sm font-semibold">{results.percentile}%</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <Star className="h-6 w-6 text-yellow-500 mx-auto mb-2" />
-                <p className="text-xs text-gray-600">Akurasi</p>
-                <p className="text-sm font-semibold">
-                  {Math.round(
-                    (results.correctAnswers / results.totalQuestions) * 100
-                  )}
-                  %
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Category Breakdown */}
-          <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Brain className="h-5 w-5" />
-                Analisis per Kategori
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {results.categories.map((category, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">{category.name}</span>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="outline" className="text-xs">
-                        {category.description}
-                      </Badge>
-                      <span
-                        className={`text-sm font-bold ${getScoreColor(
-                          category.score
-                        )}`}
-                      >
-                        {category.score}%
-                      </span>
-                    </div>
-                  </div>
-                  <Progress value={category.score} className="h-2" />
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Insights */}
-          <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <TrendingUp className="h-5 w-5" />
-                Insights & Analisis
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {results.insights.map((insight, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-3 p-3 bg-blue-50 rounded-lg"
-                  >
-                    <div className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {index + 1}
-                    </div>
-                    <p className="text-sm text-gray-700 leading-relaxed">
-                      {insight}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Recommendations */}
-          <Card>
-            <CardHeader className="pb-4">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Target className="h-5 w-5" />
-                Rekomendasi Pengembangan
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {results.recommendations.map((rec, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-3 p-3 bg-green-50 rounded-lg"
-                  >
-                    <div className="w-5 h-5 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
-                      {index + 1}
-                    </div>
-                    <p className="text-sm text-gray-700 leading-relaxed">
-                      {rec}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3">
+        {/* Section 2: Action Buttons */}
+        <div className="max-w-7xl container mx-auto px-6">
+          <div className="flex justify-between gap-3">
             <Button
               onClick={() => router.push("/candidate/test")}
-              className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-600 text-white hover:from-blue-600 hover:to-cyan-700"
+              className="bg-gradient-to-r from-blue-500 to-cyan-600 text-white hover:from-blue-600 hover:to-cyan-700"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Kembali ke Daftar Test
@@ -329,11 +172,205 @@ const TestResultsPage = () => {
             <Button
               onClick={() => router.push(`/candidate/test/${testId}`)}
               variant="outline"
-              className="flex-1"
             >
               <RefreshCw className="h-4 w-4 mr-2" />
               Ulangi Test
             </Button>
+          </div>
+        </div>
+
+        {/* Section 3: Score & Stats */}
+        <div className="max-w-7xl container mx-auto px-6">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Score Overview - Grid 8 */}
+            <div className="col-span-8">
+              <Card className={`border-2 ${getScoreBg(results.score)} h-full`}>
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <div className="flex justify-center mb-6">
+                      <div className="relative">
+                        <div className="w-28 h-28 rounded-full bg-white border-4 border-current flex items-center justify-center shadow-lg">
+                          <span
+                            className={`text-4xl font-bold ${getScoreColor(
+                              results.score
+                            )}`}
+                          >
+                            {results.score}
+                          </span>
+                        </div>
+                        <Trophy className="absolute -top-2 -right-2 h-8 w-8 text-yellow-500" />
+                      </div>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                      Skor Anda: {results.score}/100
+                    </h2>
+                    <Badge
+                      variant="secondary"
+                      className="text-base px-4 py-2 mb-4"
+                    >
+                      Level: {results.level}
+                    </Badge>
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      Anda berada di persentil ke-{results.percentile}, artinya
+                      skor Anda lebih tinggi dari {results.percentile}% peserta
+                      lainnya
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Stats - Grid 4 (6 dalam 2x2) */}
+            <div className="col-span-4">
+              <div className="grid grid-cols-6 gap-4">
+                {/* Top Row - 2 cards taking 3 columns each */}
+                <div className="col-span-3">
+                  <Card className="h-full">
+                    <CardContent className="p-6 text-center">
+                      <Clock className="h-8 w-8 text-blue-500 mx-auto mb-3" />
+                      <p className="text-sm text-gray-600 mb-1">Waktu</p>
+                      <p className="text-lg font-bold">{results.timeSpent}</p>
+                    </CardContent>
+                  </Card>
+                </div>
+                <div className="col-span-3">
+                  <Card className="h-full">
+                    <CardContent className="p-6 text-center">
+                      <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-3" />
+                      <p className="text-sm text-gray-600 mb-1">Benar</p>
+                      <p className="text-lg font-bold">
+                        {results.correctAnswers}/{results.totalQuestions}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Bottom Row - 2 cards taking 3 columns each */}
+                <div className="col-span-3">
+                  <Card className="h-full">
+                    <CardContent className="p-6 text-center">
+                      <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-3" />
+                      <p className="text-sm text-gray-600 mb-1">Persentil</p>
+                      <p className="text-lg font-bold">{results.percentile}%</p>
+                    </CardContent>
+                  </Card>
+                </div>
+                <div className="col-span-3">
+                  <Card className="h-full">
+                    <CardContent className="p-6 text-center">
+                      <Star className="h-8 w-8 text-yellow-500 mx-auto mb-3" />
+                      <p className="text-sm text-gray-600 mb-1">Akurasi</p>
+                      <p className="text-lg font-bold">
+                        {Math.round(
+                          (results.correctAnswers / results.totalQuestions) *
+                            100
+                        )}
+                        %
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 4: Analysis Cards - Grid 4 each */}
+        <div className="max-w-7xl container mx-auto px-6 pb-8">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Category Breakdown - Grid 4 */}
+            <div className="col-span-4">
+              <Card className="h-full">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <Brain className="h-5 w-5" />
+                    Analisis per Kategori
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {results.categories.map((category, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">
+                          {category.name}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">
+                            {category.description}
+                          </Badge>
+                          <span
+                            className={`text-sm font-bold ${getScoreColor(
+                              category.score
+                            )}`}
+                          >
+                            {category.score}%
+                          </span>
+                        </div>
+                      </div>
+                      <Progress value={category.score} className="h-2" />
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Insights - Grid 4 */}
+            <div className="col-span-4">
+              <Card className="h-full">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <TrendingUp className="h-5 w-5" />
+                    Insights & Analisis
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {results.insights.map((insight, index) => (
+                      <div
+                        key={index}
+                        className="flex gap-3 p-3 bg-blue-50 rounded-lg"
+                      >
+                        <div className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                          {index + 1}
+                        </div>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {insight}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Recommendations - Grid 4 */}
+            <div className="col-span-4">
+              <Card className="h-full">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-2 text-lg">
+                    <Target className="h-5 w-5" />
+                    Rekomendasi Pengembangan
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {results.recommendations.map((rec, index) => (
+                      <div
+                        key={index}
+                        className="flex gap-3 p-3 bg-green-50 rounded-lg"
+                      >
+                        <div className="w-5 h-5 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                          {index + 1}
+                        </div>
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {rec}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
