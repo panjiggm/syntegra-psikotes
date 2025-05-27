@@ -97,7 +97,7 @@ export default function Home() {
               </span>
             </div>
             <Button variant="outline" asChild>
-              <Link href="/login">Login Admin</Link>
+              <Link href="/login">Login Peserta</Link>
             </Button>
           </div>
         </div>
