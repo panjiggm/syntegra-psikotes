@@ -138,7 +138,7 @@ export default function Home() {
                 </Button>
               </Link>
 
-              <Link href={"/login"}>
+              <Link href={"/admin/login"}>
                 <Button
                   variant="outline"
                   className="hover:bg-primary/5 transition-all duration-200"
